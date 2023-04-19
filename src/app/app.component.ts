@@ -11,6 +11,9 @@ export class AppComponent {
   userValue = '';
   boxesValue: string[] = new Array(9);
   // boxesValue: any[] = ['', '', '', '', '', '', '', '', ''];
+  isGameOver = false;
+
+  name = '';
 
   printValue(index: number) {
     if (this.boxesValue[index]) return;
@@ -23,8 +26,6 @@ export class AppComponent {
 
     this.winGame();
   }
-
-  isGameOver = false;
 
   winGame() {
     let winCases = [
@@ -47,8 +48,8 @@ export class AppComponent {
         this.boxesValue[winner[2]] === 'X'
       ) {
         this.isGameOver = true;
-
-        alert('Player X won The Game');
+        this.name = 'Tarek';
+        alert(`${this.name} Won The Game :)`);
         break;
       } else if (
         this.boxesValue[winner[0]] === 'O' &&
@@ -56,16 +57,15 @@ export class AppComponent {
         this.boxesValue[winner[2]] === 'O'
       ) {
         this.isGameOver = true;
-
-        alert('Player O won The Game');
+        this.name = 'Ahmed';
+        alert(`${this.name} Won The Game :)`);
         break;
       }
     }
   }
 
   resetGame() {
-    this.boxesValue = ['', '', '', '', '', '', '', '', ''];
+    this.boxesValue = new Array(9);
     this.isGameOver = false;
-    // this.matchWinCase = [];
   }
 }
