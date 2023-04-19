@@ -1,7 +1,7 @@
 <div class="container">
   <h1>X-O Game</h1>
 
-  <div class="gameBoard" *ngFor="let box of boxesValue; let i = index">
+  <div class="gameBoard">
     <div class="box" (click)="printValue(0)">{{ boxesValue[0] }}</div>
     <div class="box" (click)="printValue(1)">{{ boxesValue[1] }}</div>
     <div class="box" (click)="printValue(2)">{{ boxesValue[2] }}</div>
@@ -12,4 +12,6 @@
     <div class="box" (click)="printValue(7)">{{ boxesValue[7] }}</div>
     <div class="box" (click)="printValue(8)">{{ boxesValue[8] }}</div>
   </div>
+  <br />
+  <button (click)="resetGame()">Reset Game</button>
 </div>
