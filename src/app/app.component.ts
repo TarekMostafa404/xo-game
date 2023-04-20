@@ -9,7 +9,8 @@ export class AppComponent {
   user = '';
   boxesValue: string[] = new Array(9);
   isGameOver = false;
-  playerName = '';
+  player_X = '';
+  player_O = '';
 
   printValue(index: number) {
     if (this.boxesValue[index]) return;
@@ -45,8 +46,8 @@ export class AppComponent {
       ) {
         this.isGameOver = true;
 
-        this.playerName
-          ? alert(`Game over! ${this.playerName.toUpperCase()} Won The Game`)
+        this.player_X
+          ? alert(`Game over! ${this.player_X.toUpperCase()} Won The Game`)
           : alert(`Game over! ${this.user} Won The Game`);
         break;
       } else if (
@@ -55,8 +56,8 @@ export class AppComponent {
         this.boxesValue[winner[2]] === 'O'
       ) {
         this.isGameOver = true;
-        this.playerName
-          ? alert(`Game over! ${this.playerName.toUpperCase()} Won The Game`)
+        this.player_O
+          ? alert(`Game over! ${this.player_O.toUpperCase()} Won The Game`)
           : alert(`Game over! ${this.user} Won The Game`);
         break;
       }
@@ -67,6 +68,7 @@ export class AppComponent {
     this.boxesValue = new Array(9);
     this.isGameOver = false;
     this.user = '';
-    this.playerName = '';
+    this.player_X = '';
+    this.player_O = '';
   }
 }
