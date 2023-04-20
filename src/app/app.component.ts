@@ -6,23 +6,19 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'xo-game';
-
-  userValue = '';
+  user = '';
   boxesValue: string[] = new Array(9);
-  // boxesValue: any[] = ['', '', '', '', '', '', '', '', ''];
   isGameOver = false;
-
-  name = '';
+  playerName = '';
 
   printValue(index: number) {
     if (this.boxesValue[index]) return;
 
     if (this.isGameOver) return;
 
-    let player = this.userValue === 'X' ? 'O' : 'X';
+    let player = this.user === 'X' ? 'O' : 'X';
 
-    this.boxesValue[index] = this.userValue = player;
+    this.boxesValue[index] = this.user = player;
 
     this.winGame();
   }
@@ -48,8 +44,10 @@ export class AppComponent {
         this.boxesValue[winner[2]] === 'X'
       ) {
         this.isGameOver = true;
-        this.name = 'Tarek';
-        alert(`${this.name} Won The Game :)`);
+
+        this.playerName
+          ? alert(`Game over! ${this.playerName.toUpperCase()} Won The Game`)
+          : alert(`Game over! ${this.user} Won The Game`);
         break;
       } else if (
         this.boxesValue[winner[0]] === 'O' &&
@@ -57,8 +55,9 @@ export class AppComponent {
         this.boxesValue[winner[2]] === 'O'
       ) {
         this.isGameOver = true;
-        this.name = 'Ahmed';
-        alert(`${this.name} Won The Game :)`);
+        this.playerName
+          ? alert(`Game over! ${this.playerName.toUpperCase()} Won The Game`)
+          : alert(`Game over! ${this.user} Won The Game`);
         break;
       }
     }
@@ -67,5 +66,7 @@ export class AppComponent {
   resetGame() {
     this.boxesValue = new Array(9);
     this.isGameOver = false;
+    this.user = '';
+    this.playerName = '';
   }
 }
