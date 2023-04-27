@@ -7,6 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   user = '';
+  selectedUser = 'X';
   boxesValue: string[] = new Array(9);
   isGameOver = false;
   player_X = '';
@@ -17,11 +18,31 @@ export class AppComponent {
 
     if (this.isGameOver) return;
 
-    let player = this.user === 'X' ? 'O' : 'X';
+    let player;
+
+    if (!this.user) {
+      player = this.selectedUser;
+    } else {
+      player = this.user === 'X' ? 'O' : 'X';
+    }
 
     this.boxesValue[index] = this.user = player;
 
     this.winGame();
+  }
+
+  getPlayerTurn() {
+    let player;
+
+    if (!this.user) {
+      player = this.selectedUser;
+    } else {
+      player = this.user === 'X' ? 'O' : 'X';
+    }
+    
+    player = player === 'X' ? `${this.player_X} (X)` : `${this.player_O} (O)`;
+
+    return player;
   }
 
   winGame() {
@@ -46,9 +67,11 @@ export class AppComponent {
       ) {
         this.isGameOver = true;
 
-        this.player_X
-          ? alert(`Game over! ${this.player_X.toUpperCase()} Won The Game`)
-          : alert(`Game over! ${this.user} Won The Game`);
+        setTimeout(() => {
+          this.player_X
+            ? alert(`Game over! ${this.player_X.toUpperCase()} Won The Game`)
+            : alert(`Game over! ${this.user} Won The Game`);
+        }, 0);
         break;
       } else if (
         this.boxesValue[winner[0]] === 'O' &&
@@ -56,9 +79,12 @@ export class AppComponent {
         this.boxesValue[winner[2]] === 'O'
       ) {
         this.isGameOver = true;
-        this.player_O
-          ? alert(`Game over! ${this.player_O.toUpperCase()} Won The Game`)
-          : alert(`Game over! ${this.user} Won The Game`);
+
+        setTimeout(() => {
+          this.player_O
+            ? alert(`Game over! ${this.player_O.toUpperCase()} Won The Game`)
+            : alert(`Game over! ${this.user} Won The Game`);
+        }, 0);
         break;
       }
     }

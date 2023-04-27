@@ -4,24 +4,35 @@
   </header>
 
   <div>
-    <label for="name">First Player Name:</label><br />
+    <label for="name">Player X</label><br />
     <input
       type="text"
       placeholder="Type in Your Name"
       name="player"
       [(ngModel)]="player_X"
+      [disabled]="user.length > 0"
     />
-  </div>
-  <div>
-    <label for="name">Second Player Name:</label><br />
+    <br />
+
+    <label for="name">Player O</label><br />
     <input
       type="text"
       placeholder="Type in Your Name"
       name="player"
       [(ngModel)]="player_O"
+      [disabled]="!!user"
     />
+    <br />
+    <br />
+    <label for="player">Select Start Player: </label>
+    <select name="palyer" [(ngModel)]="selectedUser" [disabled]="!!user">
+      <option value="X">X</option>
+      <option value="O">O</option>
+    </select>
   </div>
   <br />
+
+  <h3>Player {{ getPlayerTurn() }} Turn</h3>
 
   <div class="gameBoard">
     <div class="box" (click)="printValue(0)">{{ boxesValue[0] }}</div>
