@@ -6,10 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  user = '';
-  selectedUser = 'X';
   boxesValue: string[] = new Array(9);
+  matchWinCase: number[] = [];
   isGameOver = false;
+  defaultPlayer = '';
+  selectedPlayer = 'X';
   player_X = '';
   player_O = '';
 
@@ -20,13 +21,13 @@ export class AppComponent {
 
     let player;
 
-    if (!this.user) {
-      player = this.selectedUser;
+    if (!this.defaultPlayer) {
+      player = this.selectedPlayer;
     } else {
-      player = this.user === 'X' ? 'O' : 'X';
+      player = this.defaultPlayer === 'X' ? 'O' : 'X';
     }
 
-    this.boxesValue[index] = this.user = player;
+    this.boxesValue[index] = this.defaultPlayer = player;
 
     this.winGame();
   }
@@ -34,12 +35,12 @@ export class AppComponent {
   getPlayerTurn() {
     let player;
 
-    if (!this.user) {
-      player = this.selectedUser;
+    if (!this.defaultPlayer) {
+      player = this.selectedPlayer;
     } else {
-      player = this.user === 'X' ? 'O' : 'X';
+      player = this.defaultPlayer === 'X' ? 'O' : 'X';
     }
-    
+
     player = player === 'X' ? `${this.player_X} (X)` : `${this.player_O} (O)`;
 
     return player;
@@ -66,11 +67,12 @@ export class AppComponent {
         this.boxesValue[winner[2]] === 'X'
       ) {
         this.isGameOver = true;
+        this.matchWinCase = winner;
 
         setTimeout(() => {
           this.player_X
             ? alert(`Game over! ${this.player_X.toUpperCase()} Won The Game`)
-            : alert(`Game over! ${this.user} Won The Game`);
+            : alert(`Game over! ${this.defaultPlayer} Won The Game`);
         }, 0);
         break;
       } else if (
@@ -79,11 +81,12 @@ export class AppComponent {
         this.boxesValue[winner[2]] === 'O'
       ) {
         this.isGameOver = true;
+        this.matchWinCase = winner;
 
         setTimeout(() => {
           this.player_O
             ? alert(`Game over! ${this.player_O.toUpperCase()} Won The Game`)
-            : alert(`Game over! ${this.user} Won The Game`);
+            : alert(`Game over! ${this.defaultPlayer} Won The Game`);
         }, 0);
         break;
       }
@@ -92,8 +95,9 @@ export class AppComponent {
 
   resetGame() {
     this.boxesValue = new Array(9);
+    this.matchWinCase = [];
     this.isGameOver = false;
-    this.user = '';
+    this.defaultPlayer = '';
     this.player_X = '';
     this.player_O = '';
   }

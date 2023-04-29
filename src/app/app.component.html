@@ -10,7 +10,7 @@
       placeholder="Type in Your Name"
       name="player"
       [(ngModel)]="player_X"
-      [disabled]="user.length > 0"
+      [disabled]="defaultPlayer.length > 0"
     />
     <br />
 
@@ -20,12 +20,16 @@
       placeholder="Type in Your Name"
       name="player"
       [(ngModel)]="player_O"
-      [disabled]="!!user"
+      [disabled]="!!defaultPlayer"
     />
     <br />
     <br />
     <label for="player">Select Start Player: </label>
-    <select name="palyer" [(ngModel)]="selectedUser" [disabled]="!!user">
+    <select
+      name="palyer"
+      [(ngModel)]="selectedPlayer"
+      [disabled]="!!defaultPlayer"
+    >
       <option value="X">X</option>
       <option value="O">O</option>
     </select>
@@ -35,15 +39,69 @@
   <h3>Player {{ getPlayerTurn() }} Turn</h3>
 
   <div class="gameBoard">
-    <div class="box" (click)="printValue(0)">{{ boxesValue[0] }}</div>
-    <div class="box" (click)="printValue(1)">{{ boxesValue[1] }}</div>
-    <div class="box" (click)="printValue(2)">{{ boxesValue[2] }}</div>
-    <div class="box" (click)="printValue(3)">{{ boxesValue[3] }}</div>
-    <div class="box" (click)="printValue(4)">{{ boxesValue[4] }}</div>
-    <div class="box" (click)="printValue(5)">{{ boxesValue[5] }}</div>
-    <div class="box" (click)="printValue(6)">{{ boxesValue[6] }}</div>
-    <div class="box" (click)="printValue(7)">{{ boxesValue[7] }}</div>
-    <div class="box" (click)="printValue(8)">{{ boxesValue[8] }}</div>
+    <div
+      class="box"
+      [class.winGame]="matchWinCase.indexOf(0) > -1"
+      (click)="printValue(0)"
+    >
+      {{ boxesValue[0] }}
+    </div>
+    <div
+      class="box"
+      [class.winGame]="matchWinCase.indexOf(1) > -1"
+      (click)="printValue(1)"
+    >
+      {{ boxesValue[1] }}
+    </div>
+    <div
+      class="box"
+      [class.winGame]="matchWinCase.indexOf(2) > -1"
+      (click)="printValue(2)"
+    >
+      {{ boxesValue[2] }}
+    </div>
+    <div
+      class="box"
+      [class.winGame]="matchWinCase.indexOf(3) > -1"
+      (click)="printValue(3)"
+    >
+      {{ boxesValue[3] }}
+    </div>
+    <div
+      class="box"
+      [class.winGame]="matchWinCase.indexOf(4) > -1"
+      (click)="printValue(4)"
+    >
+      {{ boxesValue[4] }}
+    </div>
+    <div
+      class="box"
+      [class.winGame]="matchWinCase.indexOf(5) > -1"
+      (click)="printValue(5)"
+    >
+      {{ boxesValue[5] }}
+    </div>
+    <div
+      class="box"
+      [class.winGame]="matchWinCase.indexOf(6) > -1"
+      (click)="printValue(6)"
+    >
+      {{ boxesValue[6] }}
+    </div>
+    <div
+      class="box"
+      [class.winGame]="matchWinCase.indexOf(7) > -1"
+      (click)="printValue(7)"
+    >
+      {{ boxesValue[7] }}
+    </div>
+    <div
+      class="box"
+      [class.winGame]="matchWinCase.indexOf(8) > -1"
+      (click)="printValue(8)"
+    >
+      {{ boxesValue[8] }}
+    </div>
   </div>
 
   <br />

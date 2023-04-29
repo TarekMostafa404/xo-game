@@ -3,3 +3,11 @@
   width: 100px;
   height: 100px;
 }
+
+.box:hover {
+  background-color: #a8bea8;
+}
+
+.winGame {
+  background-color: #2fc0e0;
+}
