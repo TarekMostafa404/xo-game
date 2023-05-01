@@ -8,11 +8,11 @@ import { Component } from '@angular/core';
 export class AppComponent {
   boxesValue: string[] = new Array(9);
   matchWinCase: number[] = [];
-  isGameOver = false;
-  defaultPlayer = '';
-  selectedPlayer = 'X';
-  player_X = '';
-  player_O = '';
+  isGameOver: boolean = false;
+  defaultPlayer: string = '';
+  selectedPlayer: string = 'X';
+  player_X: string = '';
+  player_O: string = '';
 
   printValue(index: number) {
     if (this.boxesValue[index]) return;
@@ -41,7 +41,7 @@ export class AppComponent {
       player = this.defaultPlayer === 'X' ? 'O' : 'X';
     }
 
-    player = player === 'X' ? `${this.player_X} (X)` : `${this.player_O} (O)`;
+    player = 'X' ? `${this.player_X} (X)` : `${this.player_O} (O)`;
 
     return player;
   }
