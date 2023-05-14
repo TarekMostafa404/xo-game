@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  boxesValue: string[] = new Array(9);
+  board: string[] = new Array(9);
   matchWinCase: number[] = [];
   isGameOver: boolean = false;
   defaultPlayer: string = '';
@@ -15,35 +15,36 @@ export class AppComponent {
   player_O: string = '';
 
   printValue(index: number) {
-    if (this.boxesValue[index]) return;
+    if (this.board[index]) return;
 
     if (this.isGameOver) return;
 
-    let player;
+    let rival = this.defaultPlayer === 'X' ? 'O' : 'X';
 
     if (!this.defaultPlayer) {
-      player = this.selectedPlayer;
+      rival = this.selectedPlayer;
     } else {
-      player = this.defaultPlayer === 'X' ? 'O' : 'X';
+      rival = this.defaultPlayer === 'X' ? 'O' : 'X';
     }
 
-    this.boxesValue[index] = this.defaultPlayer = player;
+    this.board[index] = this.defaultPlayer = rival;
 
     this.winGame();
   }
 
   getPlayerTurn() {
-    let player;
+    let playerTurn;
 
     if (!this.defaultPlayer) {
-      player = this.selectedPlayer;
+      playerTurn = this.selectedPlayer;
     } else {
-      player = this.defaultPlayer === 'X' ? 'O' : 'X';
+      playerTurn = this.defaultPlayer === 'X' ? 'O' : 'X';
     }
 
-    player = 'X' ? `${this.player_X} (X)` : `${this.player_O} (O)`;
+    playerTurn =
+      playerTurn === 'X' ? `${this.player_X} (X)` : `${this.player_O} (O)`;
 
-    return player;
+    return playerTurn;
   }
 
   winGame() {
@@ -62,30 +63,30 @@ export class AppComponent {
       let winner = winCases[i];
 
       if (
-        this.boxesValue[winner[0]] === 'X' &&
-        this.boxesValue[winner[1]] === 'X' &&
-        this.boxesValue[winner[2]] === 'X'
+        this.board[winner[0]] === 'X' &&
+        this.board[winner[1]] === 'X' &&
+        this.board[winner[2]] === 'X'
       ) {
         this.isGameOver = true;
         this.matchWinCase = winner;
 
         setTimeout(() => {
           this.player_X
-            ? alert(`Game over! ${this.player_X.toUpperCase()} Won The Game`)
+            ? alert(`Game over! ${this.player_X} Won The Game`)
             : alert(`Game over! ${this.defaultPlayer} Won The Game`);
         }, 0);
         break;
       } else if (
-        this.boxesValue[winner[0]] === 'O' &&
-        this.boxesValue[winner[1]] === 'O' &&
-        this.boxesValue[winner[2]] === 'O'
+        this.board[winner[0]] === 'O' &&
+        this.board[winner[1]] === 'O' &&
+        this.board[winner[2]] === 'O'
       ) {
         this.isGameOver = true;
         this.matchWinCase = winner;
 
         setTimeout(() => {
           this.player_O
-            ? alert(`Game over! ${this.player_O.toUpperCase()} Won The Game`)
+            ? alert(`Game over! ${this.player_O} Won The Game`)
             : alert(`Game over! ${this.defaultPlayer} Won The Game`);
         }, 0);
         break;
@@ -94,7 +95,7 @@ export class AppComponent {
   }
 
   resetGame() {
-    this.boxesValue = new Array(9);
+    this.board = new Array(9);
     this.matchWinCase = [];
     this.isGameOver = false;
     this.defaultPlayer = '';
