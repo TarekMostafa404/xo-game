@@ -19,7 +19,7 @@ export class AppComponent {
 
     if (this.isGameOver) return;
 
-    let rival = this.defaultPlayer === 'X' ? 'O' : 'X';
+    let rival;
 
     if (!this.defaultPlayer) {
       rival = this.selectedPlayer;
@@ -30,21 +30,6 @@ export class AppComponent {
     this.board[index] = this.defaultPlayer = rival;
 
     this.winGame();
-  }
-
-  getPlayerTurn() {
-    let playerTurn;
-
-    if (!this.defaultPlayer) {
-      playerTurn = this.selectedPlayer;
-    } else {
-      playerTurn = this.defaultPlayer === 'X' ? 'O' : 'X';
-    }
-
-    playerTurn =
-      playerTurn === 'X' ? `${this.player_X} (X)` : `${this.player_O} (O)`;
-
-    return playerTurn;
   }
 
   winGame() {
@@ -92,6 +77,21 @@ export class AppComponent {
         break;
       }
     }
+  }
+
+  getPlayerTurn() {
+    let playerTurn;
+
+    if (!this.defaultPlayer) {
+      playerTurn = this.selectedPlayer;
+    } else {
+      playerTurn = this.defaultPlayer === 'X' ? 'O' : 'X';
+    }
+
+    playerTurn =
+      playerTurn === 'X' ? `${this.player_X} (X)` : `${this.player_O} (O)`;
+
+    return playerTurn;
   }
 
   resetGame() {
